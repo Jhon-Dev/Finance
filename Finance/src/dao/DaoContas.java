@@ -3,7 +3,6 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +21,7 @@ public class DaoContas {
 	
 	public void salvar(Contas contas) {
 		
-		String sql = "insert into usuario(nome valor) values ( ?, ?, ?)";
+		String sql = "insert into contas(nome, valor ) values (?, ?)";
 		try {
 			
 			PreparedStatement statement = connection.prepareStatement(sql);

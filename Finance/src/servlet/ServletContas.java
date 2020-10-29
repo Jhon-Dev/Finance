@@ -28,7 +28,33 @@ public class ServletContas extends HttpServlet {
 
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+		try {
+			String acao = request.getParameter("acao") != null ? request.getParameter("acao") : "listartodos";
+			String contas = request.getParameter("contas");
+			
+			RequestDispatcher view = request.getRequestDispatcher("/index.jsp");
+
+			if (acao.equalsIgnoreCase("delete")) {
+				//daoContas.delete(contas);	
+				
+				request.setAttribute("contas", daoContas.listar());
+				
+			} else if (acao.equalsIgnoreCase("editar")) {
+				//contas beanCursoJsp = daoContas.consultar(contas);				
+			//	request.setAttribute("contas", beanCursoJsp);
+				
+			} else if (acao.equalsIgnoreCase("listartodos")) {
+				
+				request.setAttribute("contas", daoContas.listar());
+			}
+
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
+
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
